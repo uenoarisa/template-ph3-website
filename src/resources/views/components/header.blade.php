@@ -1,13 +1,13 @@
-<header id="js-header" class="l-header p-header">
+<header id="js-header" class="l-header p-header flex">
     <div class="p-header__logo"><img src="./assets/img/logo.svg" alt="POSSE"></div>
     <button class="p-header__button" id="js-headerButton"></button>
-    <div class="p-header__inner">
+    <div class="p-header__inner flex">
       <nav class="p-header__nav">
         <ul class="p-header__nav__list">
-          <li class="p-header__nav__item">
-            <a href="./" class="p-header__nav__item__link">POSSEとは</a>
+          <li class="p-header__nav__item flex">
+            <a href="./" class="p-header__nav__item__link lg">POSSEとは</a>
           </li>
-          <li class="p-header__nav__item">
+          <li class="p-header__nav__item flex">
             <a href="./quiz/" class="p-header__nav__item__link">クイズ</a>
           </li>
         </ul>
