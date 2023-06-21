@@ -4,8 +4,6 @@
 
 </x-head>
 
-
-
 <body>
   <x-header>
     
@@ -18,7 +16,7 @@
           <span class="p-top-hero__body__catchcopy">自分史上最高<br>を仲間と。</span>
         </div>
         <picture class="p-top-hero__image">
-          <img src="./assets/img/img-hero.jpg" alt="">
+          <img src="{{ asset('img/img-hero.jpg') }}" alt="">
         </picture>
         <div class="p-top-hero__scroll">Scroll Down</div>
       </div>
@@ -33,7 +31,7 @@
           </h2>
           <div class="p-top-about__body">
             <picture class="p-top-about__image">
-              <img src="./assets/img/img-about.jpg" alt="POSSEメンバー集合写真">
+              <img src="../../public/img/img-about.jpg" alt="POSSEメンバー集合写真">
             </picture>
             <div class="p-top-about__content">
               <p>

@@ -10,7 +10,7 @@
     <div class="l-footer__inner">
       <div class="p-footer__siteinfo">
         <span class="p-footer__logo">
-          <img src="./assets/img/logo.svg" alt="POSSE">
+          <img src="{{ asset('img/logo.svg') }}" alt="POSSE">
         </span>
         <a href="https://posse-ap.com/" target="_blank" rel="noopener noreferrer"
           class="p-footer__siteinfo__link">POSSE公式サイト</a>

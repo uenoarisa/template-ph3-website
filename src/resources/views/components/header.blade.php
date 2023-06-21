@@ -1,5 +1,5 @@
 <header id="js-header" class="l-header p-header flex">
-    <div class="p-header__logo"><img src="./assets/img/logo.svg" alt="POSSE"></div>
+    <div class="p-header__logo"><img src="{{ asset('img/logo.svg') }}" alt="POSSE"></div>
     <button class="p-header__button" id="js-headerButton"></button>
     <div class="p-header__inner flex">
       <nav class="p-header__nav">

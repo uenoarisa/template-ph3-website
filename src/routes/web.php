@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +33,6 @@ require __DIR__.'/auth.php';
 
 Route::get('/top',[TopController::class,'test'])
 ->name('index');
+
+Route::get('/user',[UserController::class,'index'])
+->name('user');
