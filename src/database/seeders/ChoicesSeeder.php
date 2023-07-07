@@ -13,9 +13,41 @@ class ChoicesSeeder extends Seeder
     public function run(): void
     {
         \app\Models\Choices::create([
-            'text' => '約10万人',
+            'text' => '約79万人',
+            'is_correct' => true,
+            'question_id' => 1,
+        ],[
+            'text' => '約28万人',
             'is_correct' => false,
             'question_id' => 1,
+        ],[
+            'text' => '約183万人',
+            'is_correct' => false,
+            'question_id' => 1,
+        ],[
+            'text' => 'INTECH',
+            'is_correct' => false,
+            'question_id' => 2,
+        ],[
+            'text' => 'BIZZTECH',
+            'is_correct' => false,
+            'question_id' => 2,
+        ],[
+            'text' => 'X-TECH',
+            'is_correct' => true,
+            'question_id' => 2,
+        ],[
+            'text' => 'Internet of Things',
+            'is_correct' => true,
+            'question_id' => 3,
+        ],[
+            'text' => 'Information on Tool',
+            'is_correct' => false,
+            'question_id' => 3,
+        ],[
+            'text' => 'Integrate into Technology',
+            'is_correct' => false,
+            'question_id' => 3,
         ]);
     }
 }
