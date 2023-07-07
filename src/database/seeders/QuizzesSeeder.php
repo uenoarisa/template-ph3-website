@@ -1,0 +1,32 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class QuizzesSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $quizzes = [
+            [
+                'name' => 'ITクイズ'
+            ],
+            [
+                'name' => 'ごうきクイズ'
+            ],
+            [
+                'name' => 'もりはるクイズ'
+            ]
+        ];
+
+        foreach ($quizzes as $quiz) {
+            \App\Models\Quizzes::create($quiz);
+        };
+    }
+}
+
