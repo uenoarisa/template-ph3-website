@@ -9,4 +9,11 @@ class Quizzes extends Model
 {
     use HasFactory;
     protected $fillable = ['id','name'];
+
+    public function questions()
+    {
+        return $this->hasMany(Questions::class,'quiz_id');
+    }
+
 }
+

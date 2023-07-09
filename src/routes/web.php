@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuizController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,3 +38,11 @@ Route::get('/top',[TopController::class,'test'])
 
 Route::get('/user',[UserController::class,'index'])
 ->name('user');
+
+Route::get('/quizzes',[QuizController::class,'index'])
+->name('quiz');
+
+// Route::get('/quizzes',[QuizController::class,'show'])
+// ->name('quiz_show');
+
+Route::get('/quizzes/{id}', [QuizController::class, 'show'])->name('quiz_show');

@@ -12,7 +12,8 @@ class ChoicesSeeder extends Seeder
      */
     public function run(): void
     {
-        \app\Models\Choices::create([
+
+        $choices = [[
             'text' => '約79万人',
             'is_correct' => true,
             'question_id' => 1,
@@ -48,6 +49,10 @@ class ChoicesSeeder extends Seeder
             'text' => 'Integrate into Technology',
             'is_correct' => false,
             'question_id' => 3,
-        ]);
+        ]];
+
+        foreach ($choices as $choice) {
+            \App\Models\Choices::create($choice);
+        };
     }
 }

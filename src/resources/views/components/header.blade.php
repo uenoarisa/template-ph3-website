@@ -8,7 +8,7 @@
             <a href="./" class="p-header__nav__item__link lg">POSSEとは</a>
           </li>
           <li class="p-header__nav__item flex">
-            <a href="./quiz/" class="p-header__nav__item__link">クイズ</a>
+            <a href="{{ route('quiz') }}" class="p-header__nav__item__link">クイズ</>
           </li>
         </ul>
       </nav>

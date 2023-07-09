@@ -6,6 +6,10 @@
   border-width: 0;
   box-sizing: border-box;
 }
+li{
+  list-style: none;
+  margin-top: 20px;
+}
 
 html {
   -webkit-text-size-adjust: 100%; /* 2 */
