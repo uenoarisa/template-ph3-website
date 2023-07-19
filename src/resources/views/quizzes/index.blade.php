@@ -6,7 +6,7 @@
 <div class="mx-auto px-6">
   @foreach ($quizzes as $quiz)
   <div class="mt-4 p-8 bg-white w-full rounded-2xl">
-    <a href="{{route('quiz_show', ['id' => $quiz -> id])}}">
+    <a href="{{route('quiz.show', ['id' => $quiz -> id])}}">
         <h3 class="p-4">
           {{ $quiz->name }}
         </h3>

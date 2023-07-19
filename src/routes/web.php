@@ -42,10 +42,11 @@ Route::get('/user',[UserController::class,'index'])
 Route::get('/quizzes',[QuizController::class,'index'])
 ->name('quiz');
 
-Route::get('/quizzes/{id}/edit',[QuizController::class,'edit'])
-->name('quiz.edit');
+Route::get('/quizzes/{id}', [QuizController::class, 'show'])
+    ->name('quiz.show');
 
-Route::get('/quizzes/{id}/edit',[QuizController::class,'update'])
-->name('quiz.update');
+Route::get('/quizzes/{id}/edit', [QuizController::class, 'edit'])
+    ->name('quiz.edit');
 
-Route::get('/quizzes/{id}', [QuizController::class, 'show'])->name('quiz_show');
+Route::put('/quizzes/{id}', [QuizController::class, 'update'])
+    ->name('quiz.update');
