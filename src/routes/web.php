@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuizController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -39,10 +41,24 @@ Route::get('/top',[TopController::class,'test'])
 Route::get('/user',[UserController::class,'index'])
 ->name('user');
 
-Route::get('/quizzes',[QuizController::class,'index'])
-->name('quiz');
+Route::get('admin/quizzes',[QuizController::class,'index'])
+->name('quiz.index');
 
-// Route::get('/quizzes',[QuizController::class,'show'])
-// ->name('quiz_show');
+Route::get('admin/quizzes/{id}', [QuizController::class, 'show'])->name('quiz.show');
 
-Route::get('/quizzes/{id}', [QuizController::class, 'show'])->name('quiz_show');
+Route::get('admin/quizzes/{id}/edit', [QuizController::class, 'edit'])
+->name('quiz.edit');
+
+Route::put('admin/quizzes/{id}', [QuizController::class, 'update'])
+->name('quiz.update');
+
+Route::delete('admin/quizzes/{id}', [QuizController::class, 'destroy'])
+->name('quiz.destroy');
+Route::get('/dash', [UserController::class, 'dash'])
+    ->name('admin.dash');
+
+Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () {
+    Route::get('/', [UserController::class, 'dashboard'])
+    ->name('admin.dashboard');
+    // 他の管理画面のルートを追加
+});

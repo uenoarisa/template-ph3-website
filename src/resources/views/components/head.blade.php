@@ -11,7 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Plus+Jakarta+Sans:wght@400;700&display=swap"
     rel="stylesheet">
-  <!-- <script src="../assets/scripts/common.js" defer></script> -->
+  <script src="../../../public/js/common.js" defer></script>
   @vite(['resources/css/app.css'],'resources/js/app.js')
   <!-- tailwindをコンパイルしてる -->
 </head>
