@@ -12,6 +12,7 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+            <a href="{{ route('quiz.index') }}">クイズ一覧画面へ</a>
         </div>
     </div>
 </x-app-layout>

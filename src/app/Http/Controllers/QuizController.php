@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Models\Quizzes;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Pagination\Paginator;
 
 class QuizController extends Controller
 {
     public function index()
     {
-        $quizzes = Quizzes::all();
+        Paginator::useBootstrap();
+        $quizzes = Quizzes::paginate(20);
         return view('admin.quizzes.index',compact('quizzes'));
 
     }
