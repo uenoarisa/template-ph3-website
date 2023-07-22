@@ -41,19 +41,7 @@ Route::get('/top',[TopController::class,'test'])
 Route::get('/user',[UserController::class,'index'])
 ->name('user');
 
-Route::get('admin/quizzes',[QuizController::class,'index'])
-->name('quiz.index');
 
-Route::get('admin/quizzes/{id}', [QuizController::class, 'show'])->name('quiz.show');
-
-Route::get('admin/quizzes/{id}/edit', [QuizController::class, 'edit'])
-->name('quiz.edit');
-
-Route::put('admin/quizzes/{id}', [QuizController::class, 'update'])
-->name('quiz.update');
-
-Route::delete('admin/quizzes/{id}', [QuizController::class, 'destroy'])
-->name('quiz.destroy');
 Route::get('/dash', [UserController::class, 'dash'])
     ->name('admin.dash');
 
@@ -61,4 +49,21 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
     Route::get('/', [UserController::class, 'dashboard'])
     ->name('admin.dashboard');
     // 他の管理画面のルートを追加
+    Route::get('quizzes/create', [QuizController::class, 'create'])->name('quiz.create');
+
+    Route::get('quizzes/',[QuizController::class,'index'])
+    ->name('quiz.index');
+
+    Route::get('quizzes/{id}', [QuizController::class, 'show'])->name('quiz.show');
+
+    Route::get('quizzes/{id}/edit', [QuizController::class, 'edit'])
+    ->name('quiz.edit');
+
+    Route::put('quizzes/{id}', [QuizController::class, 'update'])
+    ->name('quiz.update');
+
+    Route::delete('quizzes/{id}', [QuizController::class, 'destroy'])
+    ->name('quiz.destroy');
+
+    Route::post('quizzes/store', [QuizController::class, 'store'])->name('quiz.store');
 });

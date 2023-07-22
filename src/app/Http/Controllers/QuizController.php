@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Models\Quizzes;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Pagination\Paginator;
 
 class QuizController extends Controller
 {
     public function index()
     {
-        $quizzes = Quizzes::all();
+        // Paginator::useBootstrap();
+        $quizzes = Quizzes::withTrashed()->paginate(20);
         return view('admin.quizzes.index',compact('quizzes'));
 
     }
@@ -41,5 +43,23 @@ class QuizController extends Controller
         $quiz = Quizzes::find($id);
         $quiz->delete();
         return Redirect::route('quiz.index')->with('success', '削除されました！');
+    }
+    public function create()
+    {
+        return view('admin.quizzes.create.create');
+        // viewの後ろのquizzes.createはresources/viewsディレクトリ内にquizzesフォルダのcreate.blade.phpを表示する
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:200',
+        ]);
+
+        Quizzes::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('quiz.index')->with('success', '新しいクイズのタイトルを作成しました！');
     }
 }
