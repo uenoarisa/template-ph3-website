@@ -49,7 +49,9 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
     Route::get('/', [UserController::class, 'dashboard'])
     ->name('admin.dashboard');
     // 他の管理画面のルートを追加
-    Route::get('quizzes',[QuizController::class,'index'])
+    Route::get('quizzes/create', [QuizController::class, 'create'])->name('quiz.create');
+
+    Route::get('quizzes/',[QuizController::class,'index'])
     ->name('quiz.index');
 
     Route::get('quizzes/{id}', [QuizController::class, 'show'])->name('quiz.show');
@@ -62,4 +64,6 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
 
     Route::delete('quizzes/{id}', [QuizController::class, 'destroy'])
     ->name('quiz.destroy');
+
+    Route::post('quizzes/store', [QuizController::class, 'store'])->name('quiz.store');
 });
