@@ -1,9 +1,14 @@
-<form method="POST" action= "{{route('questions.update',$question->id)}}">
+<form method="POST" action= "{{route('questions.update',$question->id)}}" enctype="multipart/form-data">
     @csrf
-
-    @error('title')
-      <div class="text-danger">{{ $message }}</div>
-    @enderror
+    @if ($errors->any())
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     @method('put')
     <label for="quiz_id">紐付けるクイズタイトル</label>
@@ -22,13 +27,10 @@
     <label for="image">写真</label>
     <input type="file" name="image" id="image">
 
-    <label for="correct_choice">正解の選択肢</label>
-    @foreach ($question->choices as $choice)
-        <input type="radio" name="correct_choice" value="{{ $choice->id }}" {{ $choice->is_correct ? 'checked' : '' }}>
-        <label for="choice_{{ $choice->id }}">選択肢{{ $choice->id }}</label>
-        <input type="text" name="choice_{{ $choice->id }}" value="{{ $choice->text }}">
-        
-        <br>
+    @foreach ($question->choices as $i => $choice)
+    <input type="radio" name="correct_choice" value="{{ $choice->id }}" {{ $choice->is_correct == 1 ? 'checked' : '' }}>
+    <label for="choice_{{ $i + 1 }}">選択肢{{$i+1}}</label>
+    <input type="text" name="choice_{{ $choice -> id }}" id="choice_{{ $i + 1 }}" value="{{ $choice->text }}">
     @endforeach
 
     

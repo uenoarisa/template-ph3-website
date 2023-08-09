@@ -137,38 +137,44 @@ class QuizController extends Controller
     }
     
     public function question_update(Request $request, $id) {
+        // dd($request->all());
+
         $question = Questions::findOrFail($id);
+        
         $request->validate([
             'quiz_id' => 'required|exists:quizzes,id',
             'question_text' => 'required|max:200',
             'supplement_text' => 'required|max:200',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'choice_1' => 'required|max:100',
-            'choice_2' => 'required|max:100',
-            'choice_3' => 'required|max:100',
-            'correct_choice' => 'required|integer|between:1,3',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
-        
+    
+        // 質問の情報を更新
         $question->update([
             'quiz_id' => $request->input('quiz_id'),
             'text' => $request->input('question_text'),
             'supplement' => $request->input('supplement_text'),
         ]);
     
+        // 画像の更新
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('question_images', 'public');
+            $imagePath = $request->file('image')->store('question_image', 'public');
             $question->image = $imagePath;
-            $question->save();
         }
-    
+
+        
+
+        // 選択肢の情報を更新
         foreach ($question->choices as $choice) {
+            $choiceId = $choice->id;
+            $choiceText = $request->input('choice_' . $choiceId);
+            $isCorrect = ($choiceId == $request->input('correct_choice')) ? 1 : 0;
+    
             $choice->update([
-                'text' => $request->input('choice_' . $choice->id),
-                'is_correct' => $request->input('correct_choice') == $choice->id ? 1 : 0,
+                'text' => $choiceText,
+                'is_correct' => $isCorrect,
             ]);
         }
     
         return redirect()->route('question.index')->with('success', '質問と選択肢を更新しました！');
     }
-    
-}
+}    
