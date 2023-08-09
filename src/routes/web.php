@@ -66,4 +66,18 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
     ->name('quiz.destroy');
 
     Route::post('quizzes/store', [QuizController::class, 'store'])->name('quiz.store');
+
+    Route::get('questions/',[QuizController::class,'question_index'])
+    ->name('question.index');
+
+    Route::get('questions/create', [QuizController::class, 'question_create'])->name('question.create');
+
+    // Route::delete('quizzes/{id}', [QuizController::class, 'destroy'])
+    // ->name('quiz.destroy');
+
+    Route::post('questions/store', [QuizController::class, 'question_store'])->name('question.store');
+
+    Route::delete('questions/{id}', [QuizController::class, 'question_destroy'])
+    ->name('questions.destroy');
+
 });

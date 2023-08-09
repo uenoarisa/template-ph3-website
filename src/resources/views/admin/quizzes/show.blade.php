@@ -80,6 +80,7 @@
       <span class="p-quiz-box__label">Q<?= $i ?></span>
       <span class="p-quiz-box__question__title__text">{{$question -> text}}</span>
       </h2>
+      <img src="{{ asset('storage/' . $question->image) }}" alt="">
       <?php $i++; ?>
       @foreach ($question -> choices as $choice)
       <li class="p-quiz-box__answer__item">
