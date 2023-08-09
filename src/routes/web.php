@@ -80,4 +80,10 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () 
     Route::delete('questions/{id}', [QuizController::class, 'question_destroy'])
     ->name('questions.destroy');
 
+    Route::get('questions/{id}/edit', [QuizController::class, 'question_edit'])
+    ->name('questions.edit');
+
+    Route::put('questions/{id}', [QuizController::class, 'question_update'])
+    ->name('questions.update');
+
 });

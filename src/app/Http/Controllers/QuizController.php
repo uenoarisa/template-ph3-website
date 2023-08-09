@@ -123,11 +123,52 @@ class QuizController extends Controller
         $question->choices()->saveMany($choices);
         return redirect()->route('question.index')->with('success', '新しい設問を作成しました！');
     }
-    public function question_destroy($id)
-{
+    public function question_destroy($id){
     $question = Questions::findOrFail($id);
     $question->delete();
 
     return redirect()->route('question.index')->with('success', 'クイズを削除しました！');
-}
+    }
+
+    public function question_edit($id) {
+        $question = Questions::with(['choices'])->findOrFail($id);
+        $quizzes = Quizzes::all();
+        return view('admin.questions.edit', compact('question', 'quizzes'));
+    }
+    
+    public function question_update(Request $request, $id) {
+        $question = Questions::findOrFail($id);
+        $request->validate([
+            'quiz_id' => 'required|exists:quizzes,id',
+            'question_text' => 'required|max:200',
+            'supplement_text' => 'required|max:200',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'choice_1' => 'required|max:100',
+            'choice_2' => 'required|max:100',
+            'choice_3' => 'required|max:100',
+            'correct_choice' => 'required|integer|between:1,3',
+        ]);
+        
+        $question->update([
+            'quiz_id' => $request->input('quiz_id'),
+            'text' => $request->input('question_text'),
+            'supplement' => $request->input('supplement_text'),
+        ]);
+    
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('question_images', 'public');
+            $question->image = $imagePath;
+            $question->save();
+        }
+    
+        foreach ($question->choices as $choice) {
+            $choice->update([
+                'text' => $request->input('choice_' . $choice->id),
+                'is_correct' => $request->input('correct_choice') == $choice->id ? 1 : 0,
+            ]);
+        }
+    
+        return redirect()->route('question.index')->with('success', '質問と選択肢を更新しました！');
+    }
+    
 }

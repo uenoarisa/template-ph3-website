@@ -34,7 +34,10 @@
                         @method('DELETE')
                         <button type="submit">削除</button>
                     </form>
+                    <a href="{{ route('questions.edit', $question->id) }}" class="btn btn-primary"><button type="submit" class="btn btn-danger">編集</button></a>
                 @endif
+                
+
                 <p>{{ $question->text }}</p>
                 <ul>
                     @foreach ($question->choices as $choice)
